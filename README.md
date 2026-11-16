@@ -1,4 +1,4 @@
-# CarsKG: an Automotive Knowledge Graph
+# CarsKG — Automotive Knowledge Graph
 
 A semantic-web knowledge graph of the car industry: parent companies, the manufacturers they own, the models those manufacturers produce, each model's engine, body and performance specifications, three years of sales figures, and which models compete with which.
 
