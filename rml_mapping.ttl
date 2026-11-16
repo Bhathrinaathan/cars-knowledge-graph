@@ -1,0 +1,205 @@
+@prefix rr:  <http://www.w3.org/ns/r2rml#> .
+@prefix rml: <http://semweb.mmlab.be/ns/rml#> .
+@prefix ql:  <http://semweb.mmlab.be/ns/ql#> .
+@prefix ex:  <http://example.org/ontology#> .
+@prefix map: <http://example.org/mapping#> .
+
+############################################################
+### Logical Source (CSV)
+############################################################
+
+map:CarCSVSource a rml:LogicalSource ;
+    rml:source "cars.csv" ;
+    rml:referenceFormulation ql:CSV .
+
+############################################################
+### Manufacturer Mapping
+########################################## ##################
+
+map:ManufacturerMapping a rr:TriplesMap ;
+    rml:logicalSource map:CarCSVSource ;
+
+    rr:subjectMap [
+        rr:template "http://example.org/manufacturer/{Manufacturer}" ;
+        rr:class ex:Manufacturer ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate ex:parentCompany ;
+     ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate ex:countryOfOrigin ;
+        rr:objectMap [ rml:reference "Country" ] ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate ex:foundedYear ;
+        rr:objectMap [ rml:reference "FoundedYear" ; rr:datatype xsd:gYear ] ;
+    ] .
+
+############################################################
+### Parent Company Mapping
+############################################################
+
+map:ParentCompanyMapping a rr:TriplesMap ;
+    rml:logicalSource map:CarCSVSource ;
+
+    rr:subjectMap [
+        rr:template "http://example.org/company/{ParentCompany}" ;
+        rr:class ex:ParentCompany ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate ex:companyName ;
+        rr:objectMap [ rml:reference "ParentCompany" ] ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate ex:country ;
+        rr:objectMap [ rml:reference "Country" ] ;
+    ] .
+
+############################################################
+### Car Mapping
+############################################################
+
+map:CarMapping a rr:TriplesMap ;
+    rml:logicalSource map:CarCSVSource ;
+
+    rr:subjectMap [
+        rr:template "http://example.org/car/{CarName}" ;
+        rr:class ex:Car ;
+    ] ;
+
+    ## manufacturedBy (inverse manufacturerOf)
+    rr:predicateObjectMap [
+        rr:predicate ex:manufacturedBy ;
+        rr:objectMap [ rr:template "http://example.org/manufacturer/{Manufacturer}" ] ;
+    ] ;
+
+    ## link to specifications
+    rr:predicateObjectMap [
+        rr:predicate ex:hasSpecifications ;
+        rr:objectMap [ rr:template "http://example.org/specs/{CarName}" ] ;
+    ] ;
+
+    ## link to engine
+    rr:predicateObjectMap [
+        rr:predicate ex:hasEngine ;
+        rr:objectMap [ rr:template "http://example.org/engine/{CarName}" ] ;
+    ] ;
+
+    ## link to body type
+    rr:predicateObjectMap [
+        rr:predicate ex:hasBodyType ;
+        rr:objectMap [ rr:template "http://example.org/body/{CarName}" ] ;
+    ] ;
+
+    ## link to SalesRecord
+    rr:predicateObjectMap [
+        rr:predicate ex:hasSalesRecord ;
+        rr:objectMap [ rr:template "http://example.org/sales/{CarName}" ] ;
+    ] .
+
+############################################################
+### Specifications Mapping
+############################################################
+
+map:SpecificationsMapping a rr:TriplesMap ;
+    rml:logicalSource map:CarCSVSource ;
+
+    rr:subjectMap [
+        rr:template "http://example.org/specs/{CarName}" ;
+        rr:class ex:Specifications ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate ex:hp ;
+        rr:objectMap [ rml:reference "HP" ; rr:datatype xsd:integer ] ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate ex:mileage ;
+        rr:objectMap [ rml:reference "Mileage" ; rr:datatype xsd:decimal ] ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate ex:transmission ;
+        rr:objectMap [ rml:reference "Transmission" ] ;
+    ] .
+
+############################################################
+### Engine Mapping (Subclass of Specifications)
+############################################################
+
+map:EngineMapping a rr:TriplesMap ;
+    rml:logicalSource map:CarCSVSource ;
+
+    rr:subjectMap [
+        rr:template "http://example.org/engine/{CarName}" ;
+        rr:class ex:Engine ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate ex:engineType ;
+        rr:objectMap [ rml:reference "EngineType" ] ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate ex:displacement ;
+        rr:objectMap [ rml:reference "Displacement" ] ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate ex:powerOutput ;
+        rr:objectMap [ rml:reference "PowerOutput" ] ;
+    ] .
+
+############################################################
+### Body Type Mapping
+############################################################
+
+map:BodyTypeMapping a rr:TriplesMap ;
+    rml:logicalSource map:CarCSVSource ;
+
+    rr:subjectMap [
+        rr:template "http://example.org/body/{CarName}" ;
+        rr:class ex:BodyType ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate ex:bodyType ;
+        rr:objectMap [ rml:reference "BodyType" ] ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate ex:seatingCapacity ;
+        rr:objectMap [ rml:reference "SeatingCapacity" ; rr:datatype xsd:integer ] ;
+    ] .
+
+############################################################
+### Sales Record Mapping
+############################################################
+
+map:SalesRecordMapping a rr:TriplesMap ;
+    rml:logicalSource map:CarCSVSource ;
+
+    rr:subjectMap [
+        rr:template "http://example.org/sales/{CarName}" ;
+        rr:class ex:SalesRecord ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate ex:sales2023 ;
+        rr:objectMap [ rml:reference "Sales2023" ; rr:datatype xsd:integer ] ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate ex:sales2024 ;
+        rr:objectMap [ rml:reference "Sales2024" ; rr:datatype xsd:integer ] ;
+    ] ;
+
+    rr:predicateObjectMap [
+        rr:predicate ex:sales2025 ;
+        rr:objectMap [ rml:reference "Sales2025" ; rr:datatype xsd:integer ] ;
+    ] .

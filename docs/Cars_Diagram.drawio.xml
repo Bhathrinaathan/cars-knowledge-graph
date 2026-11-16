@@ -1,0 +1,304 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.1 Safari/605.1.15" version="29.0.3">
+  <diagram id="cars_kg_diagram" name="Cars-KG">
+    <mxGraphModel dx="2317" dy="1561" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" background="#ffffff" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="ontology_base" value="&lt;div&gt;&lt;b&gt;@prefix : &amp;lt;http://example.org/cars#&amp;gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;@prefix owl:&lt;/b&gt; &amp;lt;http://www.w3.org/2002/07/owl#&amp;gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;@prefix schema:&lt;/b&gt; &amp;lt;http://schema.org/&amp;gt;&lt;/div&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;" parent="1" vertex="1">
+          <mxGeometry x="-10" y="140" width="400" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="ontology_header" value="&lt;div&gt;&lt;b&gt;owl:Ontology:Cars&amp;nbsp;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;rdfs:label:&lt;/b&gt; Cars KG Ontology&lt;/div&gt;&lt;div&gt;&lt;b&gt;rdfs:comment:&lt;/b&gt; Ontology for ParentCompany, Manufacturer, Car, Specifications&lt;/div&gt;&lt;div&gt;&lt;b&gt;owl:versionInfo:&lt;/b&gt; 1.0.3&lt;/div&gt;" style="shape=document;whiteSpace=wrap;html=1;boundedLbl=1;labelBackgroundColor=#ffffff;strokeColor=#000000;fontSize=12;fontColor=#000000;size=0.23333333333333334;" parent="1" vertex="1">
+          <mxGeometry width="380" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="schema_org" value="schema:Organization" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="1" vertex="1">
+          <mxGeometry x="510" y="-30" width="180" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="schema_vehicle" value="schema:Vehicle" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="1" vertex="1">
+          <mxGeometry x="890" y="470" width="180" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="schema_country" value=":Country" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" parent="1" vertex="1">
+          <mxGeometry x="740" y="290" width="180" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="parent_company" value=":ParentCompany" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
+          <mxGeometry x="500" y="70" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="parent_company_props" value=":name (1..1): xsd:string&lt;br&gt;:founder (0..1): xsd:string&lt;br&gt;:lastYearRevenue (1..1): xsd:decimal&lt;br&gt;:foundedYear (0..1): xsd:gYear" style="rounded=0;whiteSpace=wrap;html=1;align=left;dashed=1;" parent="1" vertex="1">
+          <mxGeometry x="500" y="110" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="manufacturer" value=":Manufacturer" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
+          <mxGeometry x="500" y="370" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="manufacturer_props" value=":foundedYear (0..1): xsd:gYear" style="rounded=0;whiteSpace=wrap;html=1;align=left;dashed=1;" parent="1" vertex="1">
+          <mxGeometry x="500" y="410" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="car" value=":Car" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
+          <mxGeometry x="500" y="540" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="specifications" value=":Specifications" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
+          <mxGeometry x="510" y="710" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="specifications_props" value=":hp (1..1): xsd:integer&lt;br&gt;:mileage (0..1): xsd:float&lt;br&gt;:transmission (1..1): xsd:string" style="rounded=0;whiteSpace=wrap;html=1;align=left;dashed=1;" parent="1" vertex="1">
+          <mxGeometry x="500" y="580" width="200" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="engines" value=":Engines" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
+          <mxGeometry x="340" y="840" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="engines_props" value=":engineType (0..1): xsd:string&lt;br&gt;:displacement (0..1): xsd:float&lt;br&gt;:powerOutput (0..1): xsd:integer" style="rounded=0;whiteSpace=wrap;html=1;align=left;dashed=1;" parent="1" vertex="1">
+          <mxGeometry x="340" y="880" width="200" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="bodytype" value=":BodyType" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
+          <mxGeometry x="700" y="840" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bodytype_props" value=":bodyType (0..1): xsd:string&lt;br&gt;:seatingCapacity (0..1): xsd:integer" style="rounded=0;whiteSpace=wrap;html=1;align=left;dashed=1;" parent="1" vertex="1">
+          <mxGeometry x="700" y="880" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="salesrecord" value=":SalesRecord" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
+          <mxGeometry x="930" y="610" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="salesrecord_props" value=":sales2023 (0..1): xsd:integer&lt;br&gt;:sales2024 (0..1): xsd:integer&lt;br&gt;:sales2025 (0..1): xsd:integer" style="rounded=0;whiteSpace=wrap;html=1;align=left;dashed=1;" parent="1" vertex="1">
+          <mxGeometry x="930" y="650" width="200" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="subclass_manufacturer" value="" style="endArrow=block;html=1;endSize=12;endFill=0;exitX=0.25;exitY=0;exitDx=0;exitDy=0;entryX=0.25;entryY=1;entryDx=0;entryDy=0;" parent="1" source="manufacturer" target="parent_company_props" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="450" as="sourcePoint" />
+            <mxPoint x="450" y="400" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="subclass_manufacturer_label" value="rdfs:subClassOf" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=#ffffff;" parent="subclass_manufacturer" vertex="1" connectable="0">
+          <mxGeometry x="-0.1" y="2" relative="1" as="geometry">
+            <mxPoint x="5" y="-12" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="subclass_parent_org" value="" style="endArrow=block;html=1;endSize=12;endFill=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="parent_company" target="schema_org" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="250" as="sourcePoint" />
+            <mxPoint x="450" y="200" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="subclass_parent_org_label" value="rdfs:subClassOf" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=#ffffff;" parent="subclass_parent_org" vertex="1" connectable="0">
+          <mxGeometry x="-0.1" y="2" relative="1" as="geometry">
+            <mxPoint x="-20" y="10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="subclass_car_vehicle" value="" style="endArrow=block;html=1;endSize=12;endFill=0;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="specifications_props" target="schema_vehicle" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="700" y="250" as="sourcePoint" />
+            <mxPoint x="750" y="200" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="subclass_car_vehicle_label" value="rdfs:subClassOf" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=#ffffff;" parent="subclass_car_vehicle" vertex="1" connectable="0">
+          <mxGeometry x="-0.1" y="2" relative="1" as="geometry">
+            <mxPoint x="5" y="4" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="subclass_engines" value="" style="endArrow=block;html=1;endSize=12;endFill=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.25;entryY=1;entryDx=0;entryDy=0;" parent="1" source="engines" target="specifications" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="470" y="827" as="sourcePoint" />
+            <mxPoint x="520" y="750" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="subclass_engines_label" value="rdfs:subClassOf" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=#ffffff;" parent="subclass_engines" vertex="1" connectable="0">
+          <mxGeometry x="-0.1" y="2" relative="1" as="geometry">
+            <mxPoint x="-15" y="5" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="subclass_bodytype" value="" style="endArrow=block;html=1;endSize=12;endFill=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;" parent="1" source="bodytype" target="specifications" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1000" y="650" as="sourcePoint" />
+            <mxPoint x="1050" y="600" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="subclass_bodytype_label" value="rdfs:subClassOf" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=#ffffff;" parent="subclass_bodytype" vertex="1" connectable="0">
+          <mxGeometry x="-0.1" y="2" relative="1" as="geometry">
+            <mxPoint x="15" y="5" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="partof_edge" value="" style="endArrow=classic;html=1;endSize=8;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" parent="1" source="manufacturer" target="parent_company_props" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="600" y="360" as="sourcePoint" />
+            <mxPoint x="450" y="400" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="partof_label" value=":partOf (1..1)" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=#ffffff;" parent="partof_edge" vertex="1" connectable="0">
+          <mxGeometry x="-0.1" y="2" relative="1" as="geometry">
+            <mxPoint x="2" y="31" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="owns_edge" value="" style="endArrow=classic;html=1;endSize=8;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=0.75;entryY=0;entryDx=0;entryDy=0;dashed=1;" parent="1" source="parent_company_props" target="manufacturer" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="450" as="sourcePoint" />
+            <mxPoint x="450" y="400" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="owns_label" value=":owns (0..*) [inverse]" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=#ffffff;" parent="owns_edge" vertex="1" connectable="0">
+          <mxGeometry x="-0.1" y="2" relative="1" as="geometry">
+            <mxPoint x="8" y="-21" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="produces_edge" value="" style="endArrow=classic;html=1;endSize=8;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;" parent="1" source="manufacturer_props" target="car" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="700" y="450" as="sourcePoint" />
+            <mxPoint x="550" y="530" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="produces_label" value=":produces (0..*)" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=#ffffff;" parent="produces_edge" vertex="1" connectable="0">
+          <mxGeometry x="-0.1" y="2" relative="1" as="geometry">
+            <mxPoint y="-12" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="manufacturedby_edge" value="" style="endArrow=classic;html=1;endSize=8;exitX=0.75;exitY=0;exitDx=0;exitDy=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;dashed=1;" parent="1" source="car" target="manufacturer_props" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="700" y="450" as="sourcePoint" />
+            <mxPoint x="750" y="400" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="manufacturedby_label" value=":manufacturedBy (1..1) [inverse]" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=#ffffff;" parent="manufacturedby_edge" vertex="1" connectable="0">
+          <mxGeometry x="-0.1" y="2" relative="1" as="geometry">
+            <mxPoint x="30" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="hasspec_edge" value="" style="endArrow=classic;html=1;endSize=8;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.445;entryY=-0.05;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="specifications_props" target="specifications" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="870" y="600" as="sourcePoint" />
+            <mxPoint x="910" y="720" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="hasspec_label" value=":hasSpecification (1..1)" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=#ffffff;" parent="hasspec_edge" vertex="1" connectable="0">
+          <mxGeometry x="-0.1" y="2" relative="1" as="geometry">
+            <mxPoint x="20" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="hasengine_edge" value="" style="endArrow=classic;html=1;endSize=8;exitX=0.4;exitY=0.931;exitDx=0;exitDy=0;entryX=0.75;entryY=0;entryDx=0;entryDy=0;exitPerimeter=0;" parent="1" source="specifications" target="engines" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="585" y="750" as="sourcePoint" />
+            <mxPoint x="635" y="847" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="hasengine_label" value=":hasEngine (1..1)" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=#ffffff;" parent="hasengine_edge" vertex="1" connectable="0">
+          <mxGeometry x="-0.1" y="2" relative="1" as="geometry">
+            <mxPoint x="-10" y="-5" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="hasbodytype_edge" value="" style="endArrow=classic;html=1;endSize=8;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;" parent="1" source="specifications" target="bodytype" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="950" y="700" as="sourcePoint" />
+            <mxPoint x="1000" y="650" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="hasbodytype_label" value=":hasBodyType (1..1)" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=#ffffff;" parent="hasbodytype_edge" vertex="1" connectable="0">
+          <mxGeometry x="-0.1" y="2" relative="1" as="geometry">
+            <mxPoint x="10" y="-5" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="hassales_edge" value="" style="endArrow=classic;html=1;endSize=8;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" parent="1" source="specifications_props" target="salesrecord_props" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1000" y="450" as="sourcePoint" />
+            <mxPoint x="1050" y="400" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="hassales_label" value=":hasSalesRecord (0..*)" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=#ffffff;" parent="hassales_edge" vertex="1" connectable="0">
+          <mxGeometry x="-0.1" y="2" relative="1" as="geometry">
+            <mxPoint x="-4" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="competitor_edge" value="" style="endArrow=classic;html=1;endSize=8;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;startArrow=classic;startSize=8;" parent="1" source="specifications_props" target="car" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="900" y="300" as="sourcePoint" />
+            <mxPoint x="950" y="250" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="380" y="615" />
+              <mxPoint x="380" y="580" />
+              <mxPoint x="380" y="560" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="competitor_label" value=":competitorOf (0..*) [symmetric]" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=#ffffff;" parent="competitor_edge" vertex="1" connectable="0">
+          <mxGeometry x="-0.1" y="2" relative="1" as="geometry">
+            <mxPoint y="-15" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="operates_edge" value="" style="endArrow=classic;html=1;endSize=8;exitX=1;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="manufacturer_props" target="2OOntgLrvvTtxFY9J1Mj-6" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="500" y="300" as="sourcePoint" />
+            <mxPoint x="830" y="380" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="830" y="410" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="operates_label" value=":operatesInCountry (1..*)" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=#ffffff;" parent="operates_edge" vertex="1" connectable="0">
+          <mxGeometry x="-0.1" y="2" relative="1" as="geometry">
+            <mxPoint x="39" y="2" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="controls_edge" value="" style="endArrow=classic;html=1;endSize=8;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;strokeColor=#CC0000;" parent="1" source="parent_company_props" target="manufacturer" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="450" as="sourcePoint" />
+            <mxPoint x="450" y="400" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="430" y="150" />
+              <mxPoint x="430" y="380" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="controls_label" value=":controls (0..*) [transitive]" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=#ffffff;fontColor=#CC0000;" parent="controls_edge" vertex="1" connectable="0">
+          <mxGeometry x="-0.1" y="2" relative="1" as="geometry">
+            <mxPoint y="13" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="legend_box" value="&lt;b&gt;Legend&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;align=center;" parent="1" vertex="1">
+          <mxGeometry x="-20" y="370" width="280" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_class" value="Class" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
+          <mxGeometry x="-10" y="410" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_external" value="External Class" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="1" vertex="1">
+          <mxGeometry x="130" y="410" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_dataprop" value="Data Properties" style="rounded=0;whiteSpace=wrap;html=1;align=left;dashed=1;" parent="1" vertex="1">
+          <mxGeometry x="-10" y="450" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_subclass" value="" style="endArrow=block;html=1;endSize=12;endFill=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="130" y="465" as="sourcePoint" />
+            <mxPoint x="180" y="465" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="legend_subclass_label" value="subClassOf" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];" parent="1" vertex="1">
+          <mxGeometry x="190" y="455" width="80" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_objprop" value="" style="endArrow=classic;html=1;endSize=8;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-10" y="500" as="sourcePoint" />
+            <mxPoint x="40" y="500" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="legend_objprop_label" value="Object Property" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];" parent="1" vertex="1">
+          <mxGeometry x="50" y="490" width="100" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_inverse" value="" style="endArrow=classic;html=1;endSize=8;dashed=1;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-10" y="530" as="sourcePoint" />
+            <mxPoint x="40" y="530" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="legend_inverse_label" value="Inverse Property" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];" parent="1" vertex="1">
+          <mxGeometry x="50" y="520" width="100" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_trans" value="" style="endArrow=classic;html=1;endSize=8;strokeColor=#CC0000;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-10" y="560" as="sourcePoint" />
+            <mxPoint x="40" y="560" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="legend_trans_label" value="Transitive Property" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];fontColor=#CC0000;" parent="1" vertex="1">
+          <mxGeometry x="50" y="550" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="2OOntgLrvvTtxFY9J1Mj-6" value=":name (1..1): xsd:string" style="rounded=0;whiteSpace=wrap;html=1;align=left;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="740" y="330" width="180" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

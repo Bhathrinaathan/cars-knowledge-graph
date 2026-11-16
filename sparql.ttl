@@ -1,0 +1,202 @@
+##############################################################################
+
+#Fetch Cars which compete with each other [Bidirectional competitors]
+
+PREFIX ex: <http://example.org/ontology#>
+
+SELECT DISTINCT ?car1Name ?car2Name ?manufacturer1 ?manufacturer2
+WHERE {
+    {
+        ?car1 ex:competitorOf ?car2 .
+    }
+    UNION
+    {
+        ?car2 ex:competitorOf ?car1 .
+    }
+    
+    ?car1 ex:manufacturedBy ?mfr1 .
+    ?car2 ex:manufacturedBy ?mfr2 .
+    
+    BIND(REPLACE(STR(?car1), "http://example.org/car/", "") AS ?car1Name)
+    BIND(REPLACE(STR(?car2), "http://example.org/car/", "") AS ?car2Name)
+    BIND(REPLACE(STR(?mfr1), "http://example.org/manufacturer/", "") AS ?manufacturer1)
+    BIND(REPLACE(STR(?mfr2), "http://example.org/manufacturer/", "") AS ?manufacturer2)
+    
+    FILTER(?car1 != ?car2)
+    FILTER(STR(?car1) < STR(?car2))  # Avoid duplicate pairs
+}
+ORDER BY ?car1Name ?car2Name
+
+##############################################################################
+
+# Get the complete sales data with average for every manufacturing group
+
+PREFIX ex: <http://example.org/ontology#>
+
+SELECT ?companyName 
+       (SUM(?sales2023 + ?sales2024 + ?sales2025) AS ?totalSales)
+       (AVG(?sales2024) AS ?avgSales2024)
+       (COUNT(?car) AS ?numberOfModels)
+WHERE {
+    ?car a ex:Car .
+    ?car ex:manufacturedBy ?manufacturer .
+    ?manufacturer ex:partOf ?company .
+    ?car ex:hasSalesRecord ?salesRec .
+    ?salesRec ex:sales2023 ?sales2023 .
+    ?salesRec ex:sales2024 ?sales2024 .
+    ?salesRec ex:sales2025 ?sales2025 .
+    
+    BIND(REPLACE(STR(?company), "http://example.org/company/", "") AS ?companyName)
+}
+GROUP BY ?companyName
+ORDER BY DESC(?totalSales)
+
+##############################################################################
+
+# Get All the Electric cars
+
+PREFIX ex: <http://example.org/ontology#>
+
+SELECT ?carName ?engineType ?powerOutput ?hp ?sales2024 ?manufacturerName
+WHERE {
+    ?car a ex:Car .
+    ?car ex:hasEngine ?engine .
+    ?engine ex:engineType ?engineType .
+    ?engine ex:powerOutput ?powerOutput .
+    ?car ex:hasSpecifications ?specs .
+    ?specs ex:hp ?hp .
+    ?car ex:hasSalesRecord ?salesRec .
+    ?salesRec ex:sales2024 ?sales2024 .
+    ?car ex:manufacturedBy ?manufacturer .
+    
+    BIND(REPLACE(STR(?car), "http://example.org/car/", "") AS ?carName)
+    BIND(REPLACE(STR(?manufacturer), "http://example.org/manufacturer/", "") AS ?manufacturerName)
+    
+    FILTER(REGEX(?engineType, "Electric", "i"))
+}
+ORDER BY DESC(?hp)
+
+##############################################################################
+
+# Get the cars with HP more than 300
+
+PREFIX ex: <http://example.org/ontology#>
+PREFIX car: <http://example.org/car/>
+PREFIX mfr: <http://example.org/manufacturer/>
+PREFIX company: <http://example.org/company/>
+PREFIX specs: <http://example.org/specs/>
+PREFIX engine: <http://example.org/engine/>
+PREFIX body: <http://example.org/body/>
+PREFIX sales: <http://example.org/sales/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?carName ?hp ?engineType ?displacement ?transmission
+WHERE {
+  ?car a ex:Car ;
+       ex:hasEngine ?engineObj ;
+       ex:hasSpecifications ?specsObj ;
+       ex:manufacturedBy ?manufacturer .
+
+  ?specsObj ex:hp ?hp ;
+            OPTIONAL { ?specsObj ex:transmission ?transmission } .
+
+  ?engineObj ex:engineType ?engineType ;
+             ex:displacement ?displacement .
+
+    BIND(STRAFTER(STR(?car), "/example.org/car/") AS ?carName)
+    BIND(STRAFTER(STR(?manufacturer), "/") AS ?manufacturerName)
+
+  FILTER (?hp > 300)
+}
+ORDER BY DESC(?hp)
+LIMIT 15
+
+##############################################################################
+
+# Fetch all the SUVs with HP > 150 and 2024 sales number > 100000
+
+PREFIX ex: <http://example.org/ontology#>
+PREFIX car: <http://example.org/car/>
+
+SELECT ?carName ?hp ?sales2024 ?bodyType
+WHERE {
+    ?car a ex:Car .
+    ?car ex:hasBodyType ?bodyTypeObj .
+    ?bodyTypeObj ex:bodyType ?bodyType .
+    ?car ex:hasSpecifications ?specs .
+    ?specs ex:hp ?hp .
+    ?car ex:hasSalesRecord ?salesRec .
+    ?salesRec ex:sales2024 ?sales2024 .
+    
+    BIND(REPLACE(STR(?car), "http://example.org/car/", "") AS ?carName)
+    
+    FILTER(?bodyType = "SUV" && ?hp > 150 && ?sales2024 > 100000)
+}
+ORDER BY DESC(?hp)
+
+##############################################################################
+
+# Get all the cars which has the Sales Growth  higher than average sales Growth
+
+PREFIX ex: <http://example.org/ontology#>
+
+SELECT ?carName ?manufacturerName ?sales2023 ?sales2024 ?growthPercent ?bodyType
+WHERE {
+    ?car a ex:Car .
+    ?car ex:manufacturedBy ?manufacturer .
+    ?car ex:hasSalesRecord ?salesRec .
+    ?salesRec ex:sales2023 ?sales2023 .
+    ?salesRec ex:sales2024 ?sales2024 .
+    ?car ex:hasBodyType ?bodyTypeObj .
+    ?bodyTypeObj ex:bodyType ?bodyType .
+    
+    BIND(REPLACE(STR(?car), "http://example.org/car/", "") AS ?carName)
+    BIND(REPLACE(STR(?manufacturer), "http://example.org/manufacturer/", "") AS ?manufacturerName)
+    BIND((((?sales2024 - ?sales2023) / ?sales2023) * 100) AS ?growthPercent)
+    
+    {
+        SELECT (AVG(((?s2024 - ?s2023) / ?s2023) * 100) AS ?avgGrowth)
+        WHERE {
+            ?anyCar a ex:Car .
+            ?anyCar ex:hasSalesRecord ?anySalesRec .
+            ?anySalesRec ex:sales2023 ?s2023 .
+            ?anySalesRec ex:sales2024 ?s2024 .
+            FILTER(?s2023 > 0)
+        }
+    }
+    
+    FILTER(?sales2023 > 0 && ?growthPercent > ?avgGrowth)
+}
+ORDER BY DESC(?growthPercent)
+LIMIT 15
+
+
+
+
+##############################################################################
+
+# German Cars with HP more than 200
+
+PREFIX ex: <http://example.org/ontology#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+SELECT ?carName ?manufacturer ?hp ?country
+WHERE {
+    ?car a ex:Car ;
+         ex:manufacturedBy ?mfr ;
+         ex:hasSpecifications ?specs .
+    
+    ?mfr ex:countryOfOrigin ?country .
+    
+    ?specs ex:hp ?hp .
+    
+    BIND(REPLACE(STR(?car), "http://example.org/car/", "") AS ?carName)
+    BIND(REPLACE(STR(?mfr), "http://example.org/manufacturer/", "") AS ?manufacturer)
+    
+    FILTER(?hp > 200 && ?country = "Germany")
+}
+ORDER BY DESC(?hp)
+
+##############################################################################

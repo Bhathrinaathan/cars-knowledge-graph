@@ -1,0 +1,29 @@
+Manufacturer,CarName,ParentCompany,Country,FoundedYear,ModelYear,EngineType,Displacement,PowerOutput,BodyType,SeatingCapacity,HP,Mileage,Transmission,Sales2023,Sales2024,Sales2025,ColorOptions,WarrantyYears
+BMW,BMW 3 Series,BMW Group,Germany,1916,2024,Inline-4,2.0L,255hp,Sedan,5,255,14,CVT,120000,130500,135000,Black/White/Blue,3
+BMW,BMW X5,BMW Group,Germany,1916,2024,V6,3.0L,335hp,SUV,5,335,10,Automatic,80000,82500,86000,Grey/Black,4
+BMW,BMW i4,BMW Group,Germany,1916,2024,Electric,0L,340hp,Sedan,5,340,0,Single-Speed,30000,35000,38000,White/Blue,3
+Audi,Audi A4,Volkswagen Group,Germany,1909,2024,Inline-4,2.0L,201hp,Sedan,5,201,15,Automatic,90000,92000,95000,Black/Silver,3
+Audi,Audi Q5,Volkswagen Group,Germany,1909,2024,V6,3.0L,261hp,SUV,5,261,11,Automatic,85000,88000,91000,Grey/White,4
+Audi,Audi e-tron,Volkswagen Group,Germany,1909,2024,Electric,0L,355hp,SUV,5,355,0,Single-Speed,40000,45000,48000,Blue/White,3
+Mini,Mini Cooper,BMW Group,UK,1969,2024,Inline-3,1.5L,134hp,Hatchback,4,134,18,Manual,60000,62000,65000,Red/White,3
+Mini,Mini Countryman,BMW Group,UK,1969,2024,Inline-4,2.0L,176hp,SUV,5,176,14,Automatic,30000,32000,35000,Green/Black,4
+Mini,Mini Convertible,BMW Group,UK,1969,2024,Inline-4,2.0L,189hp,Convertible,4,189,12,Automatic,25000,27000,29000,Blue/Black,3
+Suzuki,Swift,Suzuki Motor Corporation,Japan,1909,2024,Inline-4,1.2L,89hp,Hatchback,5,89,22,Manual,180000,200000,210000,Red/White,2
+Suzuki,Baleno,Suzuki Motor Corporation,Japan,1909,2024,Inline-4,1.5L,103hp,Hatchback,5,103,20,Manual,150000,165000,175000,Silver/Blue,3
+Suzuki,Vitara,Suzuki Motor Corporation,Japan,1909,2024,Inline-4,1.6L,115hp,SUV,5,115,17,Automatic,80000,85000,90000,Grey/Black,3
+Toyota,Corolla,Toyota Motor Corporation,Japan,1937,2024,Inline-4,1.8L,139hp,Sedan,5,139,16,CVT,500000,520000,540000,White/Silver,3
+Toyota,RAV4,Toyota Motor Corporation,Japan,1937,2024,Inline-4,2.5L,203hp,SUV,5,203,12,Automatic,450000,470000,490000,Black/Red,4
+Toyota,Yaris,Toyota Motor Corporation,Japan,1937,2024,Inline-4,1.3L,98hp,Hatchback,5,98,20,Manual,300000,310000,325000,Blue/Grey,2
+Toyota,Highlander,Toyota Motor Corporation,Japan,1937,2024,V6,3.5L,295hp,SUV,7,295,10,Automatic,200000,215000,230000,Grey/White,4
+Mercedes-Benz,C-Class,Mercedes-Benz Group,Germany,1926,2024,Inline-4,2.0L,255hp,Sedan,5,255,14,Automatic,180000,190000,200000,Black/White,4
+Mercedes-Benz,E-Class,Mercedes-Benz Group,Germany,1926,2024,Inline-4,2.0L,255hp,Sedan,5,255,13,Automatic,160000,170000,180000,Silver/Grey,4
+Mercedes-Benz,GLA,Mercedes-Benz Group,Germany,1926,2024,Inline-4,2.0L,221hp,SUV,5,221,12,Automatic,90000,95000,100000,White/Black,3
+Volkswagen,Golf,Volkswagen Group,Germany,1937,2024,Inline-4,1.4L,147hp,Hatchback,5,147,17,Manual,300000,320000,340000,Blue/Silver,3
+Volkswagen,Passat,Volkswagen Group,Germany,1937,2024,Inline-4,2.0L,174hp,Sedan,5,174,15,Automatic,200000,210000,220000,Black/White,3
+Volkswagen,Tiguan,Volkswagen Group,Germany,1937,2024,Inline-4,2.0L,184hp,SUV,5,184,13,Automatic,250000,265000,280000,Grey/White,4
+Skoda,Octavia,Volkswagen Group,Czech Republic,1895,2024,Inline-4,2.0L,187hp,Sedan,5,187,15,Automatic,140000,150000,165000,White/Grey,3
+Skoda,Superb,Volkswagen Group,Czech Republic,1895,2024,Inline-4,2.0L,188hp,Sedan,5,188,14,Automatic,90000,95000,100000,Black/Silver,4
+Skoda,Kodiaq,Volkswagen Group,Czech Republic,1895,2024,Inline-4,2.0L,190hp,SUV,7,190,11,Automatic,60000,65000,70000,Grey/Black,4
+Porsche,911,Porsche AG,Germany,1931,2024,Flat-6,3.0L,379hp,Coupe,4,379,9,Automatic,35000,37000,39000,Red/Black,4
+Porsche,Cayenne,Porsche AG,Germany,1931,2024,V6,3.0L,348hp,SUV,5,348,8,Automatic,60000,62000,65000,White/Black,4
+Porsche,Macan,Porsche AG,Germany,1931,2024,Inline-4,2.0L,261hp,SUV,5,261,10,Automatic,55000,57000,60000,Blue/Grey,3

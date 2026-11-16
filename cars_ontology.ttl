@@ -1,0 +1,331 @@
+@prefix : <http://example.org/cars#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix schema: <http://schema.org/> .
+@prefix dbr: <http://dbpedia.org/resource/> .
+@prefix wd:  <https://www.wikidata.org/wiki/> .
+
+################################################################
+# Ontology header
+################################################################
+:CarsOntology a owl:Ontology ;
+    rdfs:label "Cars KG Ontology"@en ;
+    rdfs:comment "Ontology for ParentCompany, Manufacturer, Car, Specifications (with Engines & BodyType subclasses), and SalesRecord. Includes object properties with cardinalities, symmetric/transitive/inverse characteristics, and reuse of schema.org classes."@en ;
+    rdfs:seeAlso schema:Vehicle , <http://dbpedia.org/resource/Automobile> , <https://www.wikidata.org/wiki/Q1420> .
+
+################################################################
+# Classes
+################################################################
+:ParentCompany a owl:Class ;
+    rdfs:label "Parent Company"@en ;
+    rdfs:comment "Top-level parent company (may own multiple manufacturers)."@en ;
+    rdfs:subClassOf schema:Organization .
+
+:Manufacturer a owl:Class ;
+    rdfs:label "Manufacturer"@en ;
+    rdfs:comment "Manufacturer of cars; subclass of ParentCompany per design rule."@en ;
+    rdfs:subClassOf :ParentCompany .
+
+:Car a owl:Class ;
+    rdfs:label "Car"@en ;
+    rdfs:comment "A car model/variant produced by a Manufacturer."@en ;
+    rdfs:subClassOf schema:Vehicle .
+
+:Specifications a owl:Class ;
+    rdfs:label "Specifications"@en ;
+    rdfs:comment "Aggregate specification object (HP, mileage, transmission, etc.)."@en .
+
+:Engines a owl:Class ;
+    rdfs:label "Engines"@en ;
+    rdfs:comment "Engine-specific details (subclass of Specifications)."@en ;
+    rdfs:subClassOf :Specifications .
+
+:BodyType a owl:Class ;
+    rdfs:label "BodyType"@en ;
+    rdfs:comment "Car body style & seating (subclass of Specifications)."@en ;
+    rdfs:subClassOf :Specifications .
+
+:SalesRecord a owl:Class ;
+    rdfs:label "SalesRecord"@en ;
+    rdfs:comment "Yearly sales figures container."@en .
+
+################################################################
+# Object properties (with domain/range + characteristics)
+################################################################
+
+# 1. Manufacturer partOf ParentCompany  (inverse: owns)
+:partOf a owl:ObjectProperty ;
+    rdfs:label "partOf"@en ;
+    rdfs:domain :Manufacturer ;
+    rdfs:range :ParentCompany ;
+    owl:inverseOf :owns ;
+    rdfs:comment "Manufacturer partOf ParentCompany (exactly 1 parent company for a Manufacturer by design restriction)."@en .
+
+:owns a owl:ObjectProperty ;
+    rdfs:label "owns"@en ;
+    rdfs:domain :ParentCompany ;
+    rdfs:range :Manufacturer ;
+    rdfs:comment "Inverse of partOf."@en .
+
+# 2. Car competitorOf Car  (symmetric)
+:competitorOf a owl:ObjectProperty ;
+    rdfs:label "competitorOf"@en ;
+    rdfs:domain :Car ;
+    rdfs:range :Car ;
+    a owl:SymmetricProperty ;
+    rdfs:comment "Symmetric relation between Cars (if A competitorOf B then B competitorOf A)."@en .
+
+# 3. Car manufacturedBy Manufacturer  (inverse: produces)
+:manufacturedBy a owl:ObjectProperty ;
+    rdfs:label "manufacturedBy"@en ;
+    rdfs:domain :Car ;
+    rdfs:range :Manufacturer ;
+    owl:inverseOf :produces ;
+    rdfs:comment "Links each Car to the Manufacturer that makes it."@en .
+
+:produces a owl:ObjectProperty ;
+    rdfs:label "produces"@en ;
+    rdfs:domain :Manufacturer ;
+    rdfs:range :Car ;
+    rdfs:comment "Inverse of manufacturedBy; Manufacturer produces many Cars."@en .
+
+# 4. Car hasSpecification Specifications (inverse: specificationOf)
+:hasSpecification a owl:ObjectProperty ;
+    rdfs:label "hasSpecification"@en ;
+    rdfs:domain :Car ;
+    rdfs:range :Specifications ;
+    owl:inverseOf :specificationOf ;
+    rdfs:comment "Each Car is tied to Specifications (exactly 1 by constraint below)."@en .
+
+:specificationOf a owl:ObjectProperty ;
+    rdfs:label "specificationOf"@en ;
+    rdfs:domain :Specifications ;
+    rdfs:range :Car ;
+    rdfs:comment "Inverse of hasSpecification."@en .
+
+# 5. Specifications hasEngine Engines (inverse: engineOf)
+:hasEngine a owl:ObjectProperty ;
+    rdfs:label "hasEngine"@en ;
+    rdfs:domain :Specifications ;
+    rdfs:range :Engines ;
+    owl:inverseOf :engineOf ;
+    rdfs:comment "Link from Specifications to Engines."@en .
+
+:engineOf a owl:ObjectProperty ;
+    rdfs:label "engineOf"@en ;
+    rdfs:domain :Engines ;
+    rdfs:range :Specifications ;
+    rdfs:comment "Inverse of hasEngine."@en .
+
+# 6. Specifications hasBodyType BodyType (inverse: bodyTypeOf)
+:hasBodyType a owl:ObjectProperty ;
+    rdfs:label "hasBodyType"@en ;
+    rdfs:domain :Specifications ;
+    rdfs:range :BodyType ;
+    owl:inverseOf :bodyTypeOf ;
+    rdfs:comment "Link from Specifications to BodyType."@en .
+
+:bodyTypeOf a owl:ObjectProperty ;
+    rdfs:label "bodyTypeOf"@en ;
+    rdfs:domain :BodyType ;
+    rdfs:range :Specifications ;
+    rdfs:comment "Inverse of hasBodyType."@en .
+
+# 7. Manufacturer operatesInCountry schema:Country  (external interlink)
+:operatesInCountry a owl:ObjectProperty ;
+    rdfs:label "operatesInCountry"@en ;
+    rdfs:domain :Manufacturer ;
+    rdfs:range schema:Country ;
+    rdfs:comment "Manufacturer operates in at least one country (links to schema:Country from schema.org)."@en .
+
+# 8. ParentCompany controls Manufacturer (transitive)
+:controls a owl:ObjectProperty ;
+    rdfs:label "controls"@en ;
+    rdfs:domain :ParentCompany ;
+    rdfs:range :Manufacturer ;
+    a owl:TransitiveProperty ;
+    rdfs:comment "Transitive control/ownership relation: if A controls B and B controls C then A controls C."@en .
+
+# 9. Car hasSalesRecord SalesRecord
+:hasSalesRecord a owl:ObjectProperty ;
+    rdfs:label "hasSalesRecord"@en ;
+    rdfs:domain :Car ;
+    rdfs:range :SalesRecord ;
+    rdfs:comment "Link a Car to its SalesRecord."@en .
+
+################################################################
+# Data properties (with datatypes + cardinalities specified)
+################################################################
+
+# ParentCompany data properties
+:name a owl:DatatypeProperty ;
+    rdfs:label "name"@en ;
+    rdfs:domain :ParentCompany ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Name of ParentCompany (string)."@en .
+
+:founder a owl:DatatypeProperty ;
+    rdfs:label "founder"@en ;
+    rdfs:domain :ParentCompany ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Founder name (string), optional."@en .
+
+:lastYearRevenue a owl:DatatypeProperty ;
+    rdfs:label "lastYearRevenue"@en ;
+    rdfs:domain :ParentCompany ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "Revenue value (decimal)."@en .
+
+:foundedYear a owl:DatatypeProperty ;
+    rdfs:label "foundedYear"@en ;
+    rdfs:domain :Manufacturer , :ParentCompany ;
+    rdfs:range xsd:gYear ;
+    rdfs:comment "Founded year (gYear)."@en .
+
+# Specifications data properties
+:hp a owl:DatatypeProperty ;
+    rdfs:label "hp"@en ;
+    rdfs:domain :Specifications ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Horsepower (integer)."@en .
+
+:mileage a owl:DatatypeProperty ;
+    rdfs:label "mileage"@en ;
+    rdfs:domain :Specifications ;
+    rdfs:range xsd:float ;
+    rdfs:comment "Mileage (float, e.g., km/l or mpg depending on unit metadata)."@en .
+
+:transmission a owl:DatatypeProperty ;
+    rdfs:label "transmission"@en ;
+    rdfs:domain :Specifications ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Transmission description (e.g., 'Automatic', 'Manual')."@en .
+
+# Engines data properties
+:engineType a owl:DatatypeProperty ;
+    rdfs:label "engineType"@en ;
+    rdfs:domain :Engines ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Engine type (V6, I4, Electric, Hybrid)."@en .
+
+:displacement a owl:DatatypeProperty ;
+    rdfs:label "displacement"@en ;
+    rdfs:domain :Engines ;
+    rdfs:range xsd:float ;
+    rdfs:comment "Displacement in liters (float)."@en .
+
+:powerOutput a owl:DatatypeProperty ;
+    rdfs:label "powerOutput"@en ;
+    rdfs:domain :Engines ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Power output (e.g., in kW or HP; unit should be specified externally)."@en .
+
+# BodyType data properties
+:bodyType a owl:DatatypeProperty ;
+    rdfs:label "bodyType"@en ;
+    rdfs:domain :BodyType ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Body type (Sedan, SUV, Coupe, etc.)."@en .
+
+:seatingCapacity a owl:DatatypeProperty ;
+    rdfs:label "seatingCapacity"@en ;
+    rdfs:domain :BodyType ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Seating capacity (integer)."@en .
+
+# SalesRecord data properties
+:sales2023 a owl:DatatypeProperty ;
+    rdfs:label "sales2023"@en ;
+    rdfs:domain :SalesRecord ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Sales units for 2023."@en .
+
+:sales2024 a owl:DatatypeProperty ;
+    rdfs:label "sales2024"@en ;
+    rdfs:domain :SalesRecord ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Sales units for 2024."@en .
+
+:sales2025 a owl:DatatypeProperty ;
+    rdfs:label "sales2025"@en ;
+    rdfs:domain :SalesRecord ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Sales units for 2025."@en .
+
+################################################################
+# Cardinality restrictions (class-level OWL restrictions)
+################################################################
+
+# Manufacturer must be partOf exactly 1 ParentCompany
+:Manufacturer rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty :partOf ;
+    owl:cardinality "1"^^xsd:nonNegativeInteger
+] .
+
+# ParentCompany may own 0..* Manufacturer (no explicit restriction needed; inverse handles it)
+
+# Car manufacturedBy exactly 1 Manufacturer
+:Car rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty :manufacturedBy ;
+    owl:cardinality "1"^^xsd:nonNegativeInteger
+] .
+
+# Car hasSpecification exactly 1 Specifications
+:Car rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty :hasSpecification ;
+    owl:cardinality "1"^^xsd:nonNegativeInteger
+] .
+
+# Specifications hasEngine exactly 1 Engines
+:Specifications rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty :hasEngine ;
+    owl:cardinality "1"^^xsd:nonNegativeInteger
+] .
+
+# Specifications hasBodyType exactly 1 BodyType
+:Specifications rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty :hasBodyType ;
+    owl:cardinality "1"^^xsd:nonNegativeInteger
+] .
+
+# Manufacturer operatesInCountry at least 1 country (1..*)
+:Manufacturer rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty :operatesInCountry ;
+    owl:minCardinality "1"^^xsd:nonNegativeInteger
+] .
+
+# ParentCompany controls Manufacturer 0..* and is transitive (declared above)
+
+# Example data property cardinalities (min/exact)
+# ParentCompany must have exactly 1 name and exactly 1 lastYearRevenue
+:ParentCompany rdfs:subClassOf (
+    [ a owl:Restriction ; owl:onProperty :name ; owl:cardinality "1"^^xsd:nonNegativeInteger ]
+    [ a owl:Restriction ; owl:onProperty :lastYearRevenue ; owl:cardinality "1"^^xsd:nonNegativeInteger ]
+) .
+
+# Specifications must have HP and transmission (exactly 1 each)
+:Specifications rdfs:subClassOf (
+    [ a owl:Restriction ; owl:onProperty :hp ; owl:cardinality "1"^^xsd:nonNegativeInteger ]
+    [ a owl:Restriction ; owl:onProperty :transmission ; owl:cardinality "1"^^xsd:nonNegativeInteger ]
+) .
+
+################################################################
+# Notes on logic features implemented
+# - Symmetric property: :competitorOf
+# - Transitive property: :controls
+# - InverseOf properties: :partOf <-> :owns, :manufacturedBy <-> :produces,
+#   :hasSpecification <-> :specificationOf, :hasEngine <-> :engineOf, :hasBodyType <-> :bodyTypeOf
+# - At least 6 object properties defined (partOf, owns, competitorOf, manufacturedBy, produces,
+#   hasSpecification, specificationOf, hasEngine, engineOf, hasBodyType, bodyTypeOf, operatesInCountry, controls, hasSalesRecord)
+# - 4+ data properties with datatypes & cardinalities: :name (xsd:string), :lastYearRevenue (xsd:decimal),
+#   :hp (xsd:integer), :transmission (xsd:string) — plus many others.
+################################################################
+

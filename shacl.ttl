@@ -1,0 +1,163 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix ex: <http://example.org/ontology#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+################################################################
+### http://rdf4j.org/schema/rdf4j#SHACLShapeGraph
+################################################################
+
+# ParentCompany Shape
+ex:ParentCompanyShape
+  a sh:NodeShape ;
+  sh:targetClass ex:ParentCompany ;
+  sh:closed false ;
+  sh:property [
+    sh:path ex:companyName ;
+    sh:datatype xsd:string ;
+    sh:minCount 1;
+    sh:message "Company name should be a string" ;
+  ] ;
+  sh:property [
+    sh:path ex:country ;
+    sh:minCount 0 ;
+    sh:message "Country is optional" ;
+  ] .
+
+# Manufacturer Shape
+ex:ManufacturerShape
+  a sh:NodeShape ;
+  sh:targetClass ex:Manufacturer ;
+  sh:closed false ;
+  sh:property [
+    sh:path ex:parentCompany ;
+    sh:minCount 0 ;
+    sh:maxCount 1 ;
+    sh:message "Manufacturer should have at most one parent company" ;
+  ] ;
+  sh:property [
+    sh:path ex:countryOfOrigin ;
+    sh:minCount 0 ;
+    sh:message "Country of origin is optional" ;
+  ] ;
+  sh:property [
+    sh:path ex:foundedYear ;
+    sh:datatype xsd:gYear ;
+    sh:minCount 0 ;
+    sh:maxCount 1 ;
+    sh:message "Founded year should be a valid year" ;
+  ] .
+
+# Car Shape - RELAXED CONSTRAINTS
+ex:CarShape
+  a sh:NodeShape ;
+  sh:targetClass ex:Car ;
+  sh:closed false ;
+  sh:property [
+    sh:path ex:manufacturedBy ;
+    sh:minCount 0 ;
+    sh:message "Manufacturer link is optional" ;
+  ] ;
+  sh:property [
+    sh:path ex:hasSpecifications ;
+    sh:minCount 0 ;
+    sh:message "Specifications link is optional" ;
+  ] ;
+  sh:property [
+    sh:path ex:hasEngine ;
+    sh:minCount 0 ;
+    sh:message "Engine link is optional" ;
+  ] ;
+  sh:property [
+    sh:path ex:hasBodyType ;
+    sh:minCount 0 ;
+    sh:message "BodyType link is optional" ;
+  ] ;
+  sh:property [
+    sh:path ex:hasSalesRecord ;
+    sh:minCount 0 ;
+    sh:message "SalesRecord link is optional" ;
+  ] .
+
+# Specifications Shape
+ex:SpecificationsShape
+  a sh:NodeShape ;
+  sh:targetClass ex:Specifications ;
+  sh:closed false ;
+  sh:property [
+    sh:path ex:hp ;
+    sh:datatype xsd:integer ;
+    sh:minCount 0 ;
+    sh:message "HP should be an integer if present" ;
+  ] ;
+  sh:property [
+    sh:path ex:mileage ;
+    sh:minCount 0 ;
+    sh:message "Mileage is optional - no strict datatype constraint" ;
+  ] ;
+  sh:property [
+    sh:path ex:transmission ;
+    sh:minCount 0 ;
+    sh:message "Transmission is optional" ;
+  ] .
+
+# Engine Shape
+ex:EngineShape
+  a sh:NodeShape ;
+  sh:targetClass ex:Engine ;
+  sh:closed false ;
+  sh:property [
+    sh:path ex:engineType ;
+    sh:minCount 0 ;
+    sh:message "Engine type is optional" ;
+  ] ;
+  sh:property [
+    sh:path ex:displacement ;
+    sh:minCount 0 ;
+    sh:message "Displacement is optional" ;
+  ] ;
+  sh:property [
+    sh:path ex:powerOutput ;
+    sh:minCount 0 ;
+    sh:message "Power output is optional" ;
+  ] .
+
+# BodyType Shape
+ex:BodyTypeShape
+  a sh:NodeShape ;
+  sh:targetClass ex:BodyType ;
+  sh:closed false ;
+  sh:property [
+    sh:path ex:bodyType ;
+    sh:minCount 0 ;
+    sh:message "Body type is optional" ;
+  ] ;
+  sh:property [
+    sh:path ex:seatingCapacity ;
+    sh:datatype xsd:integer ;
+    sh:minCount 0 ;
+    sh:message "Seating capacity should be an integer if present" ;
+  ] .
+
+# SalesRecord Shape
+ex:SalesRecordShape
+  a sh:NodeShape ;
+  sh:targetClass ex:SalesRecord ;
+  sh:closed false ;
+  sh:property [
+    sh:path ex:sales2023 ;
+    sh:datatype xsd:integer ;
+    sh:minCount 0 ;
+    sh:message "Sales 2023 should be an integer if present" ;
+  ] ;
+  sh:property [
+    sh:path ex:sales2024 ;
+    sh:datatype xsd:integer ;
+    sh:minCount 0 ;
+    sh:message "Sales 2024 should be an integer if present" ;
+  ] ;
+  sh:property [
+    sh:path ex:sales2025 ;
+    sh:datatype xsd:integer ;
+    sh:minCount 0 ;
+    sh:message "Sales 2025 should be an integer if present" ;
+  ] .

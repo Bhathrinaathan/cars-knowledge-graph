@@ -1,0 +1,348 @@
+@prefix : <http://example.org/cars#> .
+@prefix @prefix: <http://example.org/cars#> .
+@prefix @prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix @prefix schema: <http://schema.org/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix mod: <https://w3id.org/mod#> .
+@prefix schema: <http://www.owl-ontologies.com/schema#> .
+@base <http://example.org/cars#> .
+
+<http://example.org/cars#> rdf:type owl:Ontology ;
+			rdfs:label "Cars KG Ontology" ;
+			rdfs:comment "Ontology for ParentCompany, Manufacturer, Car, Specifications" ;
+			owl:versionInfo "1.0.3" ;
+			mod:createdWith <https://chowlk.linkeddata.es/> .
+
+rdfs:label a owl:AnnotationProperty .
+
+rdfs:comment a owl:AnnotationProperty .
+
+owl:versionInfo a owl:AnnotationProperty .
+
+#################################
+#    Object Properties
+#################################
+
+## :partOf
+:partOf rdf:type owl:ObjectProperty ;
+		rdfs:domain :Manufacturer ;
+		rdfs:range :ParentCompany ;
+		rdfs:label "part of" .
+
+## :owns
+:owns rdf:type owl:ObjectProperty ;
+		rdfs:label "owns" .
+
+## :produces
+:produces rdf:type owl:ObjectProperty ;
+		rdfs:domain :Manufacturer ;
+		rdfs:range :Car ;
+		rdfs:label "produces" .
+
+## :manufacturedBy
+:manufacturedBy rdf:type owl:ObjectProperty ;
+		rdfs:label "manufactured by" .
+
+## :hasSpecification
+:hasSpecification rdf:type owl:ObjectProperty ;
+		rdfs:domain :Car ;
+		rdfs:range :Specifications ;
+		rdfs:label "has specification" .
+
+## :hasEngine
+:hasEngine rdf:type owl:ObjectProperty ;
+		rdfs:domain :Specifications ;
+		rdfs:range :Engines ;
+		rdfs:label "has engine" .
+
+## :hasBodyType
+:hasBodyType rdf:type owl:ObjectProperty ;
+		rdfs:domain :Specifications ;
+		rdfs:range :BodyType ;
+		rdfs:label "has body type" .
+
+## :hasSalesRecord
+:hasSalesRecord rdf:type owl:ObjectProperty ;
+		rdfs:domain :Car ;
+		rdfs:range :SalesRecord ;
+		rdfs:label "has sales record" .
+
+## :competitorOf
+:competitorOf rdf:type owl:ObjectProperty ;
+		rdfs:domain :Car ;
+		rdfs:range :Car ;
+		rdfs:label "competitor of" .
+
+## :operatesInCountry
+:operatesInCountry rdf:type owl:ObjectProperty ;
+		rdfs:domain :Manufacturer ;
+		rdfs:range :Country ;
+		rdfs:label "operates in country" .
+
+## :controls
+:controls rdf:type owl:ObjectProperty ;
+		rdfs:domain :ParentCompany ;
+		rdfs:range :Manufacturer ;
+		rdfs:label "controls" .
+
+#################################
+#    Data Properties
+#################################
+
+## :name
+:name rdf:type owl:DatatypeProperty ;
+		rdfs:label "name" .
+
+## :founder
+:founder rdf:type owl:DatatypeProperty ;
+		rdfs:label "founder" .
+
+## :lastYearRevenue
+:lastYearRevenue rdf:type owl:DatatypeProperty ;
+		rdfs:label "last year revenue" .
+
+## :foundedYear
+:foundedYear rdf:type owl:DatatypeProperty ;
+		rdfs:label "founded year" .
+
+## :foundedYear
+:foundedYear rdf:type owl:DatatypeProperty ;
+		rdfs:label "founded year" .
+
+## :hp
+:hp rdf:type owl:DatatypeProperty ;
+		rdfs:label "hp" .
+
+## :mileage
+:mileage rdf:type owl:DatatypeProperty ;
+		rdfs:label "mileage" .
+
+## :transmission
+:transmission rdf:type owl:DatatypeProperty ;
+		rdfs:label "transmission" .
+
+## :engineType
+:engineType rdf:type owl:DatatypeProperty ;
+		rdfs:label "engine type" .
+
+## :displacement
+:displacement rdf:type owl:DatatypeProperty ;
+		rdfs:label "displacement" .
+
+## :powerOutput
+:powerOutput rdf:type owl:DatatypeProperty ;
+		rdfs:label "power output" .
+
+## :bodyType
+:bodyType rdf:type owl:DatatypeProperty ;
+		rdfs:label "body type" .
+
+## :seatingCapacity
+:seatingCapacity rdf:type owl:DatatypeProperty ;
+		rdfs:label "seating capacity" .
+
+## :sales2023
+:sales2023 rdf:type owl:DatatypeProperty ;
+		rdfs:label "sales2023" .
+
+## :sales2024
+:sales2024 rdf:type owl:DatatypeProperty ;
+		rdfs:label "sales2024" .
+
+## :sales2025
+:sales2025 rdf:type owl:DatatypeProperty ;
+		rdfs:label "sales2025" .
+
+## :name
+:name rdf:type owl:DatatypeProperty ;
+		rdfs:label "name" .
+
+#################################
+#    Classes
+#################################
+
+## schema:Organization
+schema:Organization rdf:type owl:Class ;
+	rdfs:label "Organization" .
+
+## schema:Vehicle
+schema:Vehicle rdf:type owl:Class ;
+	rdfs:label "Vehicle" .
+
+## :Country
+:Country rdf:type owl:Class ;
+	rdfs:label "Country" ;
+	rdfs:subClassOf 
+		[ rdf:type owl:Restriction ;
+		  owl:onProperty :name ;
+		  owl:cardinality "1"^^xsd:nonNegativeInteger ]
+ .
+
+## :ParentCompany
+:ParentCompany rdf:type owl:Class ;
+	rdfs:label "Parent Company" ;
+	rdfs:subClassOf schema:Organization ;
+	rdfs:subClassOf 
+		[ rdf:type owl:Restriction ;
+		  owl:onProperty :name ;
+		  owl:cardinality "1"^^xsd:nonNegativeInteger ]
+ ;
+	rdfs:subClassOf 
+		[ rdf:type owl:Restriction ;
+		  owl:onProperty :founder ;
+		  owl:maxCardinality "1"^^xsd:nonNegativeInteger ]
+ ;
+	rdfs:subClassOf 
+		[ rdf:type owl:Restriction ;
+		  owl:onProperty :lastYearRevenue ;
+		  owl:cardinality "1"^^xsd:nonNegativeInteger ]
+ ;
+	rdfs:subClassOf 
+		[ rdf:type owl:Restriction ;
+		  owl:onProperty :foundedYear ;
+		  owl:maxCardinality "1"^^xsd:nonNegativeInteger ]
+ .
+
+## :Manufacturer
+:Manufacturer rdf:type owl:Class ;
+	rdfs:label "Manufacturer" ;
+	rdfs:subClassOf :ParentCompany ;
+	rdfs:subClassOf
+		[ rdf:type owl:Restriction ;
+		  owl:onProperty :partOf ;
+		  owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
+	rdfs:subClassOf
+		[ rdf:type owl:Restriction ;
+		  owl:onProperty :operatesInCountry ;
+		  owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
+	rdfs:subClassOf 
+		[ rdf:type owl:Restriction ;
+		  owl:onProperty :foundedYear ;
+		  owl:maxCardinality "1"^^xsd:nonNegativeInteger ]
+ .
+
+## :Car
+:Car rdf:type owl:Class ;
+	rdfs:label "Car" ;
+	rdfs:subClassOf schema:Vehicle ;
+	rdfs:subClassOf
+		[ rdf:type owl:Restriction ;
+		  owl:onProperty :manufacturedBy ;
+		  owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
+	rdfs:subClassOf
+		[ rdf:type owl:Restriction ;
+		  owl:onProperty :hasSpecification ;
+		  owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
+	rdfs:subClassOf 
+		[ rdf:type owl:Restriction ;
+		  owl:onProperty :hp ;
+		  owl:cardinality "1"^^xsd:nonNegativeInteger ]
+ ;
+	rdfs:subClassOf 
+		[ rdf:type owl:Restriction ;
+		  owl:onProperty :mileage ;
+		  owl:maxCardinality "1"^^xsd:nonNegativeInteger ]
+ ;
+	rdfs:subClassOf 
+		[ rdf:type owl:Restriction ;
+		  owl:onProperty :transmission ;
+		  owl:cardinality "1"^^xsd:nonNegativeInteger ]
+ .
+
+## :Specifications
+:Specifications rdf:type owl:Class ;
+	rdfs:label "Specifications" ;
+	rdfs:subClassOf
+		[ rdf:type owl:Restriction ;
+		  owl:onProperty :hasEngine ;
+		  owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
+	rdfs:subClassOf
+		[ rdf:type owl:Restriction ;
+		  owl:onProperty :hasBodyType ;
+		  owl:cardinality "1"^^xsd:nonNegativeInteger ] .
+
+## :Engines
+:Engines rdf:type owl:Class ;
+	rdfs:label "Engines" ;
+	rdfs:subClassOf :Specifications ;
+	rdfs:subClassOf 
+		[ rdf:type owl:Restriction ;
+		  owl:onProperty :engineType ;
+		  owl:maxCardinality "1"^^xsd:nonNegativeInteger ]
+ ;
+	rdfs:subClassOf 
+		[ rdf:type owl:Restriction ;
+		  owl:onProperty :displacement ;
+		  owl:maxCardinality "1"^^xsd:nonNegativeInteger ]
+ ;
+	rdfs:subClassOf 
+		[ rdf:type owl:Restriction ;
+		  owl:onProperty :powerOutput ;
+		  owl:maxCardinality "1"^^xsd:nonNegativeInteger ]
+ .
+
+## :BodyType
+:BodyType rdf:type owl:Class ;
+	rdfs:label "Body Type" ;
+	rdfs:subClassOf :Specifications ;
+	rdfs:subClassOf 
+		[ rdf:type owl:Restriction ;
+		  owl:onProperty :bodyType ;
+		  owl:maxCardinality "1"^^xsd:nonNegativeInteger ]
+ ;
+	rdfs:subClassOf 
+		[ rdf:type owl:Restriction ;
+		  owl:onProperty :seatingCapacity ;
+		  owl:maxCardinality "1"^^xsd:nonNegativeInteger ]
+ .
+
+## :SalesRecord
+:SalesRecord rdf:type owl:Class ;
+	rdfs:label "Sales Record" ;
+	rdfs:subClassOf 
+		[ rdf:type owl:Restriction ;
+		  owl:onProperty :sales2023 ;
+		  owl:maxCardinality "1"^^xsd:nonNegativeInteger ]
+ ;
+	rdfs:subClassOf 
+		[ rdf:type owl:Restriction ;
+		  owl:onProperty :sales2024 ;
+		  owl:maxCardinality "1"^^xsd:nonNegativeInteger ]
+ ;
+	rdfs:subClassOf 
+		[ rdf:type owl:Restriction ;
+		  owl:onProperty :sales2025 ;
+		  owl:maxCardinality "1"^^xsd:nonNegativeInteger ]
+ .
+
+## <#Legend>
+<#Legend> rdf:type owl:Class ;
+	rdfs:label "Legend" .
+
+## <#Class>
+<#Class> rdf:type owl:Class ;
+	rdfs:label "Class" .
+
+## <#ExternalClass>
+<#ExternalClass> rdf:type owl:Class ;
+	rdfs:label "External Class" .
+
+## <#DataProperties>
+<#DataProperties> rdf:type owl:Class ;
+	rdfs:label "Data Properties" .
+
+#################################
+#    Instances
+#################################
+
+#################################
+#    General Axioms
+#################################
+

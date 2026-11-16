@@ -1,0 +1,174 @@
+@prefix ex: <http://example.org/ontology#> .
+@prefix car: <http://example.org/car/> .
+@prefix mfr: <http://example.org/manufacturer/> .
+@prefix company: <http://example.org/company/> .
+@prefix specs: <http://example.org/specs/> .
+@prefix engine: <http://example.org/engine/> .
+@prefix body: <http://example.org/body/> .
+@prefix sales: <http://example.org/sales/> .
+
+################################################################
+### RELATIONSHIPS ONLY
+### (Assuming all entity instances already exist from RML mapping)
+################################################################
+
+# Manufacturer partOf ParentCompany relationships
+mfr:Audi ex:partOf company:Volkswagen%20Group .
+mfr:BMW ex:partOf company:BMW%20Group .
+mfr:Mercedes-Benz ex:partOf company:Mercedes-Benz%20Group .
+mfr:Mini ex:partOf company:BMW%20Group .
+mfr:Porsche ex:partOf company:Porsche%20AG .
+mfr:Skoda ex:partOf company:Volkswagen%20Group .
+mfr:Suzuki ex:partOf company:Suzuki%20Motor%20Corporation .
+mfr:Toyota ex:partOf company:Toyota%20Motor%20Corporation .
+mfr:Volkswagen ex:partOf company:Volkswagen%20Group .
+
+# Car manufacturedBy Manufacturer relationships
+car:BMW%203%20Series ex:manufacturedBy mfr:BMW .
+car:BMW%20X5 ex:manufacturedBy mfr:BMW .
+car:BMW%20i4 ex:manufacturedBy mfr:BMW .
+car:Audi%20A4 ex:manufacturedBy mfr:Audi .
+car:Audi%20Q5 ex:manufacturedBy mfr:Audi .
+car:Audi%20e-tron ex:manufacturedBy mfr:Audi .
+car:Mini%20Cooper ex:manufacturedBy mfr:Mini .
+car:Mini%20Countryman ex:manufacturedBy mfr:Mini .
+car:Mini%20Convertible ex:manufacturedBy mfr:Mini .
+car:Swift ex:manufacturedBy mfr:Suzuki .
+car:Baleno ex:manufacturedBy mfr:Suzuki .
+car:Vitara ex:manufacturedBy mfr:Suzuki .
+car:Corolla ex:manufacturedBy mfr:Toyota .
+car:RAV4 ex:manufacturedBy mfr:Toyota .
+car:Yaris ex:manufacturedBy mfr:Toyota .
+car:Highlander ex:manufacturedBy mfr:Toyota .
+car:C-Class ex:manufacturedBy mfr:Mercedes-Benz .
+car:E-Class ex:manufacturedBy mfr:Mercedes-Benz .
+car:GLA ex:manufacturedBy mfr:Mercedes-Benz .
+car:Golf ex:manufacturedBy mfr:Volkswagen .
+car:Passat ex:manufacturedBy mfr:Volkswagen .
+car:Tiguan ex:manufacturedBy mfr:Volkswagen .
+car:Octavia ex:manufacturedBy mfr:Skoda .
+car:Superb ex:manufacturedBy mfr:Skoda .
+car:Kodiaq ex:manufacturedBy mfr:Skoda .
+car:911 ex:manufacturedBy mfr:Porsche .
+car:Cayenne ex:manufacturedBy mfr:Porsche .
+car:Macan ex:manufacturedBy mfr:Porsche .
+
+# Car hasSpecifications Specifications relationships
+car:BMW%203%20Series ex:hasSpecifications specs:BMW%203%20Series .
+car:BMW%20X5 ex:hasSpecifications specs:BMW%20X5 .
+car:BMW%20i4 ex:hasSpecifications specs:BMW%20i4 .
+car:Audi%20A4 ex:hasSpecifications specs:Audi%20A4 .
+car:Audi%20Q5 ex:hasSpecifications specs:Audi%20Q5 .
+car:Audi%20e-tron ex:hasSpecifications specs:Audi%20e-tron .
+car:Mini%20Cooper ex:hasSpecifications specs:Mini%20Cooper .
+car:Mini%20Countryman ex:hasSpecifications specs:Mini%20Countryman .
+car:Mini%20Convertible ex:hasSpecifications specs:Mini%20Convertible .
+car:Swift ex:hasSpecifications specs:Swift .
+car:Baleno ex:hasSpecifications specs:Baleno .
+car:Vitara ex:hasSpecifications specs:Vitara .
+car:Corolla ex:hasSpecifications specs:Corolla .
+car:RAV4 ex:hasSpecifications specs:RAV4 .
+car:Yaris ex:hasSpecifications specs:Yaris .
+car:Highlander ex:hasSpecifications specs:Highlander .
+car:C-Class ex:hasSpecifications specs:C-Class .
+car:E-Class ex:hasSpecifications specs:E-Class .
+car:GLA ex:hasSpecifications specs:GLA .
+car:Golf ex:hasSpecifications specs:Golf .
+car:Passat ex:hasSpecifications specs:Passat .
+car:Tiguan ex:hasSpecifications specs:Tiguan .
+car:Octavia ex:hasSpecifications specs:Octavia .
+car:Superb ex:hasSpecifications specs:Superb .
+car:Kodiaq ex:hasSpecifications specs:Kodiaq .
+car:911 ex:hasSpecifications specs:911 .
+car:Cayenne ex:hasSpecifications specs:Cayenne .
+car:Macan ex:hasSpecifications specs:Macan .
+
+# Car hasEngine Engine relationships
+car:BMW%203%20Series ex:hasEngine engine:BMW%203%20Series .
+car:BMW%20X5 ex:hasEngine engine:BMW%20X5 .
+car:BMW%20i4 ex:hasEngine engine:BMW%20i4 .
+car:Audi%20A4 ex:hasEngine engine:Audi%20A4 .
+car:Audi%20Q5 ex:hasEngine engine:Audi%20Q5 .
+car:Audi%20e-tron ex:hasEngine engine:Audi%20e-tron .
+car:Mini%20Cooper ex:hasEngine engine:Mini%20Cooper .
+car:Mini%20Countryman ex:hasEngine engine:Mini%20Countryman .
+car:Mini%20Convertible ex:hasEngine engine:Mini%20Convertible .
+car:Swift ex:hasEngine engine:Swift .
+car:Baleno ex:hasEngine engine:Baleno .
+car:Vitara ex:hasEngine engine:Vitara .
+car:Corolla ex:hasEngine engine:Corolla .
+car:RAV4 ex:hasEngine engine:RAV4 .
+car:Yaris ex:hasEngine engine:Yaris .
+car:Highlander ex:hasEngine engine:Highlander .
+car:C-Class ex:hasEngine engine:C-Class .
+car:E-Class ex:hasEngine engine:E-Class .
+car:GLA ex:hasEngine engine:GLA .
+car:Golf ex:hasEngine engine:Golf .
+car:Passat ex:hasEngine engine:Passat .
+car:Tiguan ex:hasEngine engine:Tiguan .
+car:Octavia ex:hasEngine engine:Octavia .
+car:Superb ex:hasEngine engine:Superb .
+car:Kodiaq ex:hasEngine engine:Kodiaq .
+car:911 ex:hasEngine engine:911 .
+car:Cayenne ex:hasEngine engine:Cayenne .
+car:Macan ex:hasEngine engine:Macan .
+
+# Car hasBodyType BodyType relationships
+car:BMW%203%20Series ex:hasBodyType body:BMW%203%20Series .
+car:BMW%20X5 ex:hasBodyType body:BMW%20X5 .
+car:BMW%20i4 ex:hasBodyType body:BMW%20i4 .
+car:Audi%20A4 ex:hasBodyType body:Audi%20A4 .
+car:Audi%20Q5 ex:hasBodyType body:Audi%20Q5 .
+car:Audi%20e-tron ex:hasBodyType body:Audi%20e-tron .
+car:Mini%20Cooper ex:hasBodyType body:Mini%20Cooper .
+car:Mini%20Countryman ex:hasBodyType body:Mini%20Countryman .
+car:Mini%20Convertible ex:hasBodyType body:Mini%20Convertible .
+car:Swift ex:hasBodyType body:Swift .
+car:Baleno ex:hasBodyType body:Baleno .
+car:Vitara ex:hasBodyType body:Vitara .
+car:Corolla ex:hasBodyType body:Corolla .
+car:RAV4 ex:hasBodyType body:RAV4 .
+car:Yaris ex:hasBodyType body:Yaris .
+car:Highlander ex:hasBodyType body:Highlander .
+car:C-Class ex:hasBodyType body:C-Class .
+car:E-Class ex:hasBodyType body:E-Class .
+car:GLA ex:hasBodyType body:GLA .
+car:Golf ex:hasBodyType body:Golf .
+car:Passat ex:hasBodyType body:Passat .
+car:Tiguan ex:hasBodyType body:Tiguan .
+car:Octavia ex:hasBodyType body:Octavia .
+car:Superb ex:hasBodyType body:Superb .
+car:Kodiaq ex:hasBodyType body:Kodiaq .
+car:911 ex:hasBodyType body:911 .
+car:Cayenne ex:hasBodyType body:Cayenne .
+car:Macan ex:hasBodyType body:Macan .
+
+# Car hasSalesRecord SalesRecord relationships
+car:BMW%203%20Series ex:hasSalesRecord sales:BMW%203%20Series .
+car:BMW%20X5 ex:hasSalesRecord sales:BMW%20X5 .
+car:BMW%20i4 ex:hasSalesRecord sales:BMW%20i4 .
+car:Audi%20A4 ex:hasSalesRecord sales:Audi%20A4 .
+car:Audi%20Q5 ex:hasSalesRecord sales:Audi%20Q5 .
+car:Audi%20e-tron ex:hasSalesRecord sales:Audi%20e-tron .
+car:Mini%20Cooper ex:hasSalesRecord sales:Mini%20Cooper .
+car:Mini%20Countryman ex:hasSalesRecord sales:Mini%20Countryman .
+car:Mini%20Convertible ex:hasSalesRecord sales:Mini%20Convertible .
+car:Swift ex:hasSalesRecord sales:Swift .
+car:Baleno ex:hasSalesRecord sales:Baleno .
+car:Vitara ex:hasSalesRecord sales:Vitara .
+car:Corolla ex:hasSalesRecord sales:Corolla .
+car:RAV4 ex:hasSalesRecord sales:RAV4 .
+car:Yaris ex:hasSalesRecord sales:Yaris .
+car:Highlander ex:hasSalesRecord sales:Highlander .
+car:C-Class ex:hasSalesRecord sales:C-Class .
+car:E-Class ex:hasSalesRecord sales:E-Class .
+car:GLA ex:hasSalesRecord sales:GLA .
+car:Golf ex:hasSalesRecord sales:Golf .
+car:Passat ex:hasSalesRecord sales:Passat .
+car:Tiguan ex:hasSalesRecord sales:Tiguan .
+car:Octavia ex:hasSalesRecord sales:Octavia .
+car:Superb ex:hasSalesRecord sales:Superb .
+car:Kodiaq ex:hasSalesRecord sales:Kodiaq .
+car:911 ex:hasSalesRecord sales:911 .
+car:Cayenne ex:hasSalesRecord sales:Cayenne .
+car:Macan ex:hasSalesRecord sales:Macan .

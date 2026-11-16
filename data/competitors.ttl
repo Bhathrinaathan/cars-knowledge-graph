@@ -1,0 +1,176 @@
+@prefix : <http://example.org/cars#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+@prefix ex: <http://example.org/ontology#> .
+@prefix car: <http://example.org/car/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+############################################################
+### Car Instances
+############################################################
+
+### BMW
+car:BMW3Series a ex:Car .
+car:BMWX5 a ex:Car .
+car:BMWi4 a ex:Car .
+
+### Audi
+car:AudiA4 a ex:Car .
+car:AudiQ5 a ex:Car .
+car:AudiEtron a ex:Car .
+
+### Mini
+car:MiniCooper a ex:Car .
+car:MiniCountryman a ex:Car .
+car:MiniConvertible a ex:Car .
+
+### Suzuki
+car:Swift a ex:Car .
+car:Baleno a ex:Car .
+car:Vitara a ex:Car .
+
+### Toyota
+car:Corolla a ex:Car .
+car:RAV4 a ex:Car .
+car:Yaris a ex:Car .
+car:Highlander a ex:Car .
+
+### Mercedes-Benz
+car:MercedesCClass a ex:Car .
+car:MercedesEClass a ex:Car .
+car:MercedesGLA a ex:Car .
+
+### Volkswagen
+car:Golf a ex:Car .
+car:Passat a ex:Car .
+car:Tiguan a ex:Car .
+
+### Skoda
+car:Octavia a ex:Car .
+car:Superb a ex:Car .
+car:Kodiaq a ex:Car .
+
+### Porsche
+car:Porsche911 a ex:Car .
+car:PorscheCayenne a ex:Car .
+car:PorscheMacan a ex:Car .
+
+### Lexus
+car:LexusES a ex:Car .
+car:LexusRX a ex:Car .
+car:LexusNX a ex:Car .
+car:LexusIS a ex:Car .
+
+############################################################
+### Competitor Relationships 
+############################################################
+
+### Sedan Competitors
+car:BMW3Series ex:competitorOf car:AudiA4 .
+car:BMW3Series ex:competitorOf car:MercedesCClass .
+car:BMW3Series ex:competitorOf car:Passat .
+car:BMW3Series ex:competitorOf car:Octavia .
+car:BMW3Series ex:competitorOf car:LexusIS .
+
+car:AudiA4 ex:competitorOf car:MercedesCClass .
+car:AudiA4 ex:competitorOf car:Passat .
+car:AudiA4 ex:competitorOf car:LexusIS .
+
+car:MercedesCClass ex:competitorOf car:LexusIS .
+car:MercedesEClass ex:competitorOf car:Superb .
+car:MercedesEClass ex:competitorOf car:LexusES .
+
+car:LexusES ex:competitorOf car:Superb .
+
+### SUV Competitors
+car:BMWX5 ex:competitorOf car:AudiQ5 .
+car:BMWX5 ex:competitorOf car:MercedesGLA .
+car:BMWX5 ex:competitorOf car:RAV4 .
+car:BMWX5 ex:competitorOf car:LexusRX .
+
+car:AudiQ5 ex:competitorOf car:MercedesGLA .
+car:AudiQ5 ex:competitorOf car:RAV4 .
+car:AudiQ5 ex:competitorOf car:LexusNX .
+
+car:MercedesGLA ex:competitorOf car:RAV4 .
+car:RAV4 ex:competitorOf car:Tiguan .
+car:RAV4 ex:competitorOf car:Kodiaq .
+
+car:LexusRX ex:competitorOf car:Highlander .
+
+### Electric / Hybrid Competitors
+car:BMWi4 ex:competitorOf car:AudiEtron .
+car:BMWi4 ex:competitorOf car:MercedesEClass .
+car:BMWi4 ex:competitorOf car:LexusNX .
+
+### Hatchback Competitors
+car:MiniCooper ex:competitorOf car:Golf .
+car:MiniCooper ex:competitorOf car:Swift .
+car:MiniCooper ex:competitorOf car:Yaris .
+car:MiniCooper ex:competitorOf car:Baleno .
+
+car:Golf ex:competitorOf car:Swift .
+car:Golf ex:competitorOf car:Yaris .
+
+car:Yaris ex:competitorOf car:Swift .
+car:Baleno ex:competitorOf car:Swift .
+
+### Compact SUV Competitors
+car:MiniCountryman ex:competitorOf car:Vitara .
+car:MiniCountryman ex:competitorOf car:Tiguan .
+car:MiniCountryman ex:competitorOf car:Kodiaq .
+car:MiniCountryman ex:competitorOf car:LexusNX .
+
+### Sports Car Competitors
+car:Porsche911 ex:competitorOf car:BMWi4 .
+car:Porsche911 ex:competitorOf car:MercedesCClass .
+car:Porsche911 ex:competitorOf car:LexusIS .
+
+### Luxury SUV Competitors
+car:PorscheCayenne ex:competitorOf car:BMWX5 .
+car:PorscheCayenne ex:competitorOf car:LexusRX .
+
+car:PorscheMacan ex:competitorOf car:AudiQ5 .
+car:PorscheMacan ex:competitorOf car:MercedesGLA .
+car:PorscheMacan ex:competitorOf car:LexusNX .
+
+### Additional dataset-specific entries
+:BMW_3Series :competitorOf :Mercedes_CClass .
+:BMW_3Series :competitorOf :Audi_A4 .
+
+:BMW_X5 :competitorOf :Mercedes_GLC .
+:BMW_X5 :competitorOf :Audi_Q5 .
+:BMW_X5 :competitorOf :Toyota_RAV4 .
+
+:Mercedes_CClass :competitorOf :BMW_3Series .
+:Mercedes_CClass :competitorOf :Audi_A4 .
+
+:Mercedes_GLC :competitorOf :BMW_X5 .
+:Mercedes_GLC :competitorOf :Audi_Q5 .
+:Mercedes_GLC :competitorOf :Toyota_RAV4 .
+
+:Audi_A4 :competitorOf :BMW_3Series .
+:Audi_A4 :competitorOf :Mercedes_CClass .
+
+:Audi_Q5 :competitorOf :BMW_X5 .
+:Audi_Q5 :competitorOf :Mercedes_GLC .
+
+:Toyota_RAV4 :competitorOf :BMW_X5 .
+:Toyota_RAV4 :competitorOf :Mercedes_GLC .
+
+:Volkswagen_Golf :competitorOf :Skoda_Octavia .
+:Volkswagen_Passat :competitorOf :Skoda_Superb .
+:Porsche_911 :competitorOf :BMW_i4 .
+
+:Lexus_RX :competitorOf :BMW_X5 .
+:Lexus_RX :competitorOf :Mercedes_GLC .
+:Lexus_ES :competitorOf :BMW_5Series .
+:Lexus_ES :competitorOf :Mercedes_EClass .
+:Lexus_LC :competitorOf :BMW_i4 .
+:Lexus_LC :competitorOf :Porsche_911 .
+
+
+
